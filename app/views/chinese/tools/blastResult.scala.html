@@ -1,0 +1,25 @@
+@(path: String)(implicit session: Session)
+
+<script src="@routes.Assets.versioned("bootstrap/js/jquery-3.1.1.min.js")" type="text/javascript"></script>
+<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("font-awesome-4.7.0/css/font-awesome.min.css")">
+
+
+<div id="resultContent">
+
+</div>
+
+<script>
+
+        $(function () {
+
+            $.ajax({
+                url: "@routes.ToolsController.blastResult(path)",
+                type: "post",
+                success: function (data) {
+                    $("#resultContent").html(data.html);
+                }
+            })
+
+        })
+
+</script>

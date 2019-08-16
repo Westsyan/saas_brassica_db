@@ -1,0 +1,72 @@
+<style>
+
+	.left-fork {
+        padding-left: 40px
+    }
+
+    .left-active {
+        background-color: #393631;
+        color: white !important;
+    }
+
+
+</style>
+
+
+
+<div class="page-sidebar-wrapper">
+    <div class="page-sidebar navbar-collapse collapse">
+        <ul class="page-sidebar-menu " data-auto-scroll="true" data-slide-speed="200" id="projects">
+
+
+            <li id="home" style="background-color: #2B2A28;
+                height: 40px">
+                <a>
+                    <i class="fa fa-bar-chart"></i>
+                    <span>样品</span>
+                </a>
+            </li>
+
+
+            <li style="height: 40px;" id="upload">
+                <a href='@routes.NgsController.upload()' >
+                    <span class="left-fork">样品导入和定量分析
+                    </span>
+                    <span class='selected'></span>
+
+                </a>
+            </li>
+
+            <li style="height: 40px;" id="samplePage">
+                <a href='@routes.NgsController.samplePage()'>
+                    <span class="left-fork">样品管理</span>
+                    <span class='selected'></span>
+                </a>
+            </li>
+
+            <li style="height: 40px;" id="assembly">
+                <a href='@routes.NgsController.assembly()' >
+                    <span class="left-fork">样品组装</span>
+                    <span class='selected'></span>
+                </a>
+            </li>
+
+            <li style="height: 40px;" id="result">
+                <a href='@routes.NgsController.result()' >
+                    <span class="left-fork">组装结果</span>
+                    <span class='selected'></span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

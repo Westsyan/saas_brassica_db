@@ -1,0 +1,60 @@
+<div class="page-header navbar navbar-fixed-top">
+        <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner">
+            <!-- BEGIN LOGO -->
+        <div class="page-logo" style="text-align: center;
+            line-height: 50px;">
+            <i class="logo">NGS Platform</i>
+        </div>
+
+        <a href="routes.DiversityController.dataBefore()" class="page-option">
+            <div class="page-menu-left" id="diversity">
+                <div style="margin-top: 5px">
+                    <i class="fa fa-home logo-left" style="font-size: 20px"></i>
+                </div>
+                <span class="page-header-text">Home</span>
+            </div>
+        </a>
+
+        <a href="routes.BackgroundController.dataUploadBefore()" class="page-option">
+            <div class="page-menu-left" id="ngs">
+                <div style="margin-top: 5px">
+                    <i class="fa fa-group logo-left" style="font-size: 20px"></i>
+                </div>
+                <span class="page-header-text">定量分析1</span>
+            </div>
+        </a>
+
+        <a href="routes.BackgroundController.dataUploadBefore()" class="page-option">
+            <div class="page-menu-left" id="admin">
+                <div style="margin-top: 5px">
+                    <i class="fa fa-gift logo-left" style="font-size: 20px"></i>
+                </div>
+                <span class="page-header-text">蛋白组分析</span>
+            </div>
+        </a>
+
+
+        <a href="#" class="page-option">
+            <div class="page-menu-right" id="password">
+                <div style="margin-top: 5px">
+                    <i class="fa fa-lock logo-right" style="font-size: 20px"></i>
+                </div>
+                <span class="page-header-text"> 修改密码</span>
+            </div>
+        </a>
+    </div>
+</div>
+
+<script>
+
+        $(function () {
+            var href = window.location.href;
+            $("#" + href.split("/")[7].toLowerCase()).addClass("action");
+            $("#" + href.split("/")[8]).addClass("active");
+
+
+        });
+
+
+    </script>

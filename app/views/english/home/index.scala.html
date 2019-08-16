@@ -1,0 +1,164 @@
+@()(implicit session: Session)
+@english.home.main("Home"){
+
+
+
+        <div id="content-wrapper" class="large-text">
+
+            <section class="indent">
+
+                <div class="container">
+
+                    <div class="grid_11">
+
+                        <div class="intro-widget" style="text-align: left">
+
+                            <h2 style="float: left;
+                                margin-top: 15px;">Brassica</h2>
+
+                            <p style="margin-left: 9em;">is a genus of plants in the mustard family (Brassicaceae). The members of the
+                                genus are informally known as cruciferous vegetables, cabbages, or mustard plants. Crops
+                                from this genus are sometimes called cole crops—derived from the Latin caulis, denoting
+                                the stem or stalk of a plant.</p>
+                            <p>The genus Brassica is known for its important agricultural and horticultural crops and
+                                includes a number of weeds, both of wild taxa and escapees from cultivation. Brassica
+                                species and varieties commonly used for food include broccoli, cauliflower, cabbage, choy
+                                sum, rutabaga, turnip and some seeds used in the production of canola oil and the condiment
+                                mustard. Over 30 wild species and hybrids are in cultivation, plus numerous cultivars and
+                                hybrids of cultivated origin. Most are seasonal plants (annuals or biennials), but some
+                                are small shrubs. Brassica plants have been the subject of much scientific interest for
+                                their agricultural importance. Six particular species (B. carinata, B. juncea, B. oleracea,
+                                B. napus, B. nigra, and B. rapa) evolved by the combining of chromosomes from three earlier
+                                species, as described by the Triangle of U theory. Although of no agricultural importance
+                                of itself, the brassica Arabidopsis thaliana is of great scientific importance as a model
+                                plant species.</p>
+                            <p>The genus is native to Western Europe, the Mediterranean and temperate regions of Asia.
+                                Many wild species grow as weeds, especially in North America, South America, and Australia.</p>
+
+                        </div>
+
+                        <style>
+
+                                .img-holder {
+                                    text-align: center;
+                                }
+
+                                .home-services li {
+                                    float: left;
+                                }
+
+                        </style>
+
+                        <section>
+                            <h2 style="margin-bottom: 10px;color: #115B87">Navigate</h2>
+
+                            <ul class="home-services">
+
+                                <li>
+                                    <figure class="img-holder">
+                                        <a href="@routes.GenomeController.browseBeforeUS()">
+                                            <i class="fa fa-search" style="font-size: 100px"></i>
+                                            <h1>Genome</h1>
+                                        </a>
+                                    </figure>
+                                </li>
+
+                                <li>
+                                    <figure class="img-holder">
+                                        <a href="@routes.ToolsController.blastBeforeUS()">
+                                            <i class="fa fa-wrench" style="font-size: 100px"></i>
+                                            <h1>BLAST</h1>
+                                        </a>
+                                    </figure>
+                                </li>
+
+                                <li>
+                                    <figure class="img-holder">
+                                        <a href="@routes.DownloadController.downloadBeforeUS()">
+                                            <i class="fa fa-download" style="font-size: 100px"></i>
+                                            <h1>Download</h1>
+                                        </a>
+                                    </figure>
+                                </li>
+
+                                <li>
+                                    <figure class="img-holder">
+                                        <a href="#">
+                                            <i class="fa fa-database" style="font-size: 100px"></i>
+                                            <h1>NGS</h1>
+                                        </a>
+                                    </figure>
+                                </li>
+
+
+
+                                <li>
+                                    <figure class="img-holder">
+                                        <a href="#">
+                                            <i class="fa fa-phone" style="font-size: 100px"></i>
+                                            <h1>Contact</h1>
+                                        </a>
+                                    </figure>
+                                </li>
+                            </ul>
+                        </section>
+
+                    </div>
+
+                    <div class="grid_4">
+
+                        <a href="single-service.html" class="img-hover" ><img src="/assets/images/image2.png" width="300px"></a>
+
+                        <style>
+
+                                .ui.big.label {
+                                    font-size: 14px;
+                                }
+
+                                .ui.teal.ribbon.label.big {
+                                    font-weight: unset;
+                                }
+
+                                .raised.segment p {
+                                    font-size: 14px;
+                                }
+
+                        </style>
+
+                        <div class="ui raised segment">
+                            <h4 class="text-primary">
+                                <span class="ui teal ribbon label big">
+                                    <i class="fas fa-chart-pie"></i>
+                                    Data Statistics
+                                </span>
+                            </h4>
+                            <br>
+                            <p><i class="fa fa-chevron-circle-right"></i> Brassica Genomes: 90,000+</p>
+
+                        </div>
+
+                        <div class="ui raised segment">
+                            <h4 class="text-primary"><span class="ui teal ribbon label big"><i class="fas fa-chart-pie"></i>
+                                Release Notes </span>
+                            </h4>
+                            <br>
+                            <p><i class="fa fa-chevron-circle-right"></i>
+                                Brassica Genome database is available online on June 2019.</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+    @english.home.footer()
+
+
+}
+
+

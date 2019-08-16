@@ -1,0 +1,292 @@
+@()(implicit session: Session)
+@english.home.main("Condition Search") {
+
+    <div id="content-wrapper" class="large-text">
+
+        <section class="indent">
+
+            <div class="container">
+                <hgroup class="page-head">
+                    <h2 style="color: #207499">Condition Search</h2>
+                </hgroup>
+
+                <hr style="border-top: 1px solid #d9d9d9;"/>
+
+                <div>
+
+                    <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#condition" id="condition-tab" role="tab" data-toggle="tab" aria-controls="condition" aria-expanded="true">
+                                Gene ID</a></li>
+                            <li role="presentation"><a href="#region" role="tab" id="region-tab" data-toggle="tab" aria-controls="region">
+                                Region</a></li>
+                        </ul>
+
+                        <div id="myTabContent" class="tab-content" style="margin-top: 30px">
+                            <div role="tabpanel" class="tab-pane fade in active" id="condition" aria-labelledby="condition-tab">
+                                <form class="form-horizontal" method="get" id="geneIdForm">
+                                    <h4>Search by Gene ID:</h4>
+                                    <hr>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2">Gene ID:</label>
+                                        <div class="col-sm-8">
+
+                                            <textarea name="gene" id="gene" class="form-control" rows="5"></textarea>
+                                            <span class="help-block">
+                                                e.g.,&nbsp;<a href="javascript:egGene();"><em id="egGene">
+                                                Example</em></a></span>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <div class="actions col-sm-offset-3 col-sm-3">
+                                            <button type="button" class="btn btn-primary" style="width: 90%;" id="search" onclick="geneIdSearch()">
+                                                Search</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="region" aria-labelledby="region-tab">
+                                <h4>Search  in a region</h4>
+                                <hr>
+                                <form class="form-horizontal" method="get" id="regionForm">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3">Chromosome:</label>
+                                        <div class="col-sm-3">
+                                            <input class="form-control chr" name="chr" id="chr">
+                                        </div>
+                                        <label class="control-label">e.g., <a href="#"><em id="egChr">A01</em></a></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3">Start:</label>
+                                        <div class="col-sm-3">
+                                            <input class="form-control" name="start" id="start">
+                                        </div>
+                                        <label class="control-label">e.g., <a href="#"><em id="egStart">15</em></a></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3">End:</label>
+                                        <div class="col-sm-3">
+                                            <input class="form-control" name="end" id="end">
+                                        </div>
+                                        <label class="control-label">e.g., <a href="#"><em id="egEnd">2000000</em></a></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="actions col-sm-offset-3 col-sm-3">
+                                            <button type="button" class="btn btn-primary" style="width: 90%;" id="search" onclick="regionSearch()">
+                                                Search</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="result" style="display: none">
+                    <hr>
+
+                    <label>Select the columns to display:</label>
+                    <div id="checkbox" class="checkbox">
+
+                    </div>
+                    <div id="toolbar">
+                            &nbsp;Keyword：
+                    </div>
+
+                    <table class="display table table-bordered" id="table" data-pagination="true" data-search="true"
+                    data-toolbar="#toolbar" data-page-list="[10, 25, 50, 100, all]" data-search-align="left" data-multiple-search="true"
+                    style="table-layout: fixed;
+                        word-wrap: break-word"
+                    >
+                        <thead>
+                            <tr>
+                                <th data-field='geneid' data-sortable='true' id="marker">Gene ID</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+    <script src="@routes.Assets.versioned("views/main.js")" type="text/javascript"></script>
+    <script src="@routes.Assets.versioned("views/genome/browse.js")" type="text/javascript"></script>
+    <script src="@routes.Assets.versioned("views/tools/enrich.js")" type="text/javascript"></script>
+
+
+    <script>
+            $(function () {
+                function extractor(query) {
+                    var result = /([^,]+)$/.exec(query);
+                    if (result && result[1])
+                        return result[1].trim();
+                    return '';
+                }
+
+                $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                    // 获取已激活的标签页的名称
+                    var activeTab = $(e.target).text();
+                    // 获取前一个激活的标签页的名称
+                    var previousTab = $(e.relatedTarget).text();
+                    $("#result").hide()
+                });
+
+                $('#egChr').click(function () {
+                    var eg = $(this).text().trim();
+                    $('#chr').val(eg);
+                    $("#regionForm").formValidation("revalidateField", "chr")
+                });
+                $('#egStart').click(function () {
+                    var eg = $(this).text().trim();
+                    $('#start').val(eg);
+                    $("#regionForm").formValidation("revalidateField", "start")
+                });
+                $('#egEnd').click(function () {
+                    var eg = $(this).text().trim();
+                    $('#end').val(eg);
+                    $("#regionForm").formValidation("revalidateField", "end")
+                });
+
+
+                $('#egGeneName').click(function () {
+                    var eg = $("#egGeneName").text().trim();
+                    $('#geneName').val(eg);
+                    $("#geneNameForm").formValidation("revalidateField", "geneName")
+                });
+
+                createTable();
+
+                $('#table').bootstrapTable({
+                    columns: columns
+                });
+
+                hideArray();
+
+                formValidation()
+
+            });
+
+
+            function formValidation() {
+                $('#geneIdForm').formValidation({
+                    framework: 'bootstrap',
+                    icon: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        geneId: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Gene Id is required！'
+                                }
+                            }
+                        }
+                    }
+                });
+                $('#regionForm').formValidation({
+                    framework: 'bootstrap',
+                    icon: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        chr: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Chromosome is required！'
+                                }
+                            }
+                        },
+                        start: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'Start is required！'
+                                },
+                                integer: {
+                                    message: 'Start must be integer！'
+                                }
+
+                            }
+                        },
+                        end: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'End is required！'
+                                },
+                                integer: {
+                                    message: 'End must be integer！'
+                                }
+
+                            }
+                        }
+                    }
+                });
+
+            }
+
+            function regionSearch() {
+                var form = $("#regionForm")
+                var fv = form.data("formValidation");
+                fv.validate();
+                if (fv.isValid()) {
+                    var index = layer.load(1, {
+                        shade: [0.1, '#fff']
+                    });
+                    $("#search").attr("disabled", true).html("Search...");
+                    $.ajax({
+                        url: "@routes.GenomeController.searchByRegion()",
+                        type: "post",
+                        data: $("#regionForm").serialize(),
+                        success: function (data) {
+                            $('#table').bootstrapTable("load", data);
+                            $("#search").attr("disabled", false).html("Search").blur();
+                            layer.close(index);
+                            $("#result").show()
+                        }
+                    });
+                }
+            }
+
+            function geneIdSearch() {
+                var form = $("#geneIdForm")
+                var fv = form.data("formValidation");
+                fv.validate();
+                if (fv.isValid()) {
+                    var index = layer.load(1, {
+                        shade: [0.1, '#fff']
+                    });
+                    $("#search").attr("disabled", true).html("Search...");
+                    $.ajax({
+                        url: "@routes.GenomeController.searchByIds()",
+                        type: "post",
+                        data: $("#geneIdForm").serialize(),
+                        success: function (data) {
+                            $('#table').bootstrapTable("load", data);
+                            $("#search").attr("disabled", false).html("Search").blur();
+                            layer.close(index);
+                            $("#result").show()
+                        }
+                    });
+                }
+            }
+
+            function setColumns(value) {
+                var element = $("input:checkbox[value=" + value + "]");
+                if (element.is(":checked")) {
+                    $('#table').bootstrapTable('showColumn', value);
+                } else {
+                    $('#table').bootstrapTable('hideColumn', value);
+                }
+            }
+    </script>
+
+
+}

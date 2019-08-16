@@ -1,0 +1,85 @@
+
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET           /                                                  controllers.HomeController.index
+
+GET           /US/SAAS/BGDB/home/index                           controllers.HomeController.homeUS
+GET           /CN/SAAS/BGDB/home/index                           controllers.HomeController.homeCN
+
+POST          /SAAS/BGDB/User/addUser                            controllers.UserController.addUser
+POST          /SAAS/BGDB/User/signIn                             controllers.UserController.signIn
+GET           /SAAS/BGDB/User/signInSuccess                      controllers.UserController.signInSuccess(path:String,id:Int)
+POST          /SAAS/BGDB/User/changePassword                     controllers.UserController.changePassword
+GET           /SAAS/BGDB/User/signout                            controllers.UserController.signout(path:String)
+
+
+GET           /US/SAAS/BGDB/genome/browseBefore                  controllers.GenomeController.browseBeforeUS
+GET           /US/SAAS/BGDB/genome/moreInfo                      controllers.GenomeController.moreInfoUS(id:Int)
+GET           /US/SAAS/BGDB/genome/conditionSearchBefore         controllers.GenomeController.conditionSearchBeforeUS
+
+POST          /SAAS/BGDB/genome/getAllBrassica                   controllers.GenomeController.getAllBrassica
+POST          /SAAS/BGDB/genome/getSeqsByGeneid                  controllers.GenomeController.getSeqsByGeneid(geneid:String)
+POST          /SAAS/BGDB/genome/searchByIds                      controllers.GenomeController.searchByIds
+POST          /SAAS/BGDB/genome/searchByRegion                   controllers.GenomeController.searchByRegion
+
+GET           /US/SAAS/BGDB/tools/blastBefore                    controllers.ToolsController.blastBeforeUS
+GET           /US/SAAS/BGDB/tools/seqFetchBefore                 controllers.ToolsController.seqFetchBeforeUS
+GET           /US/SAAS/BGDB/tools/enrichmentBefore               controllers.ToolsController.enrichmentBeforeUS
+GET           /US/SAAS/BGDB/tools/geneWiseBefore                 controllers.ToolsController.geneWiseBeforeUS
+GET           /US/SAAS/BGDB/tools/muscleBefore                   controllers.ToolsController.muscleBeforeUS
+GET           /US/SAAS/BGDB/tools/lastzBefore                    controllers.ToolsController.lastzBeforeUS
+GET           /US/SAAS/BGDB/tools/primerBefore                   controllers.ToolsController.primerBeforeUS
+
+
+POST          /SAAS/BGDB/tools/blastRun                          controllers.ToolsController.blastRun
+GET           /SAAS/BGDB/tools/blastResultBefore                 controllers.ToolsController.blastResultBefore(path:String)
+POST          /SAAS/BGDB/tools/blastResult                       controllers.ToolsController.blastResult(path:String)
+POST          /SAAS/BGDB/tools/enrichment                        controllers.ToolsController.enrichment
+POST          /SAAS/BGDB/tools/seqRegion                         controllers.ToolsController.seqRegion
+POST          /SAAS/BGDB/tools/genewise                          controllers.ToolsController.genewise
+POST          /SAAS/BGDB/tools/muscle                            controllers.ToolsController.muscle
+POST          /SAAS/BGDB/tools/primer                            controllers.ToolsController.primer
+POST          /SAAS/BGDB/tools/lastz                             controllers.ToolsController.lastz
+
+POST          /SAAS/BGDB/utils/getEgGene                         controllers.UtilsController.getEgGene
+POST          /SAAS/BGDB/utils/getLastzTarfetExample             controllers.UtilsController.getLastzTarfetExample
+GET           /SAAS/BGDB/utils/downloadLastzTarfetExample        controllers.UtilsController.downloadLastzTarfetExample
+POST          /SAAS/BGDB/utils/getLastzQueryExample              controllers.UtilsController.getLastzQueryExample
+GET           /SAAS/BGDB/utils/downloadLastzQueryExample         controllers.UtilsController.downloadLastzQueryExample
+
+GET           /US/SAAS/BGDB/download/downloadBefore              controllers.DownloadController.downloadBeforeUS
+GET           /SAAS/BGDB/download/download                       controllers.DownloadController.download(file:String)
+
+GET           /US/SAAS/BGDB/Platform/NGS/upload                  controllers.NgsController.upload
+GET           /US/SAAS/BGDB/Platform/NGS/samplePage              controllers.NgsController.samplePage
+GET           /US/SAAS/BGDB/Platform/NGS/assembly                controllers.NgsController.assembly
+GET           /US/SAAS/BGDB/Platform/NGS/result                  controllers.NgsController.result
+
+POST          /SAAS/BGDB/Platform/NGS/uploadData                 controllers.NgsController.uploadData
+
+POST          /SAAS/BGDB/Platform/NGS/checkSample                controllers.NgsController.checkSample
+POST          /SAAS/BGDB/Platform/NGS/checkName                  controllers.NgsController.checkName
+POST          /SAAS/BGDB/Platform/NGS/getAllSample               controllers.NgsController.getAllSample
+POST          /SAAS/BGDB/Platform/NGS/getAllSampleName           controllers.NgsController.getAllSampleName
+GET           /SAAS/BGDB/Platform/NGS/downloadSample             controllers.NgsController.downloadSample(id:Int,filename:String)
+GET           /SAAS/BGDB/Platform/NGS/downloadAssembly           controllers.NgsController.downloadAssembly(id:Int,filename:String)
+GET           /SAAS/BGDB/Platform/NGS/openFastqc                 controllers.NgsController.openFastqc(name:String)
+GET           /SAAS/BGDB/Platform/NGS/openLogFile                controllers.NgsController.openLogFile(id:Int)
+GET           /SAAS/BGDB/Platform/NGS/openAssemblyLogFile        controllers.NgsController.openAssemblyLogFile(id:Int)
+DELETE        /SAAS/BGDB/Platform/NGS/deleteSample               controllers.NgsController.deleteSample(id:Int)
+DELETE        /SAAS/BGDB/Platform/NGS/deleteAssembly             controllers.NgsController.deleteAssembly(id:Int)
+POST          /SAAS/BGDB/Platform/NGS/runAssembly                controllers.NgsController.runAssembly
+POST          /SAAS/BGDB/Platform/NGS/getAllAssembly             controllers.NgsController.getAllAssembly
+
+GET           /moreInfoByGeneId                                  controllers.GenomeController.moreInfoByGeneIdUS(geneId:String)
+GET           /downloadBlastByRange                              controllers.DownloadController.downloadBlastByRange(name:String,range:String,blastType:String)
+GET           /downloadBlastByName                               controllers.DownloadController.downloadBlastByName(name:String,blastType:String)
+
+GET           /insert                                            controllers.InsertController.insert
+
+# Map static resources from the /public folder to the /assets URL path
+GET           /assets/*file                                      controllers.Assets.versioned(path="/public", file: Asset)
+

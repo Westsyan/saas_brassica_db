@@ -1,0 +1,108 @@
+@()(implicit session: Session)
+@english.home.main("") {
+
+
+    <div id="content-wrapper" class="large-text">
+
+        <section class="indent">
+
+            <div class="container">
+
+
+                <hgroup class="page-head">
+                    <h2 style="color: #207499">Lastz</h2>
+                </hgroup>
+
+                <hr style="border-top: 1px solid #d9d9d9;"/>
+
+                <form class="registration-form form-horizontal" id="form"
+                accept-charset="UTF-8" method="post">
+
+                    <div class="form-group" >
+                        <label class="control-label col-sm-2">Enter target sequence:</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control monospace" name="targetText" rows="5"></textarea>
+                            <span class="help-block">e.g.,&nbsp;<a href="#"><em id="egTarget">
+                                example</em></a></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Or, upload file:</label>
+                        <div class="col-sm-8">
+                            <input type="file" class="file control-label" name="targetFile" data-show-preview="false"
+                            data-show-upload="false">
+                            <span class="help-block"><a onclick="showTargetExampleFile()"><em>
+                                Example file</em></a></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" >
+                        <label class="control-label col-sm-2">Enter query sequences:</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control monospace" name="queryText" rows="5"></textarea>
+                            <span class="help-block">e.g.,&nbsp;<a href="#"><em id="egQuery">
+                                example</em></a></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Or, upload file:</label>
+                        <div class="col-sm-8">
+                            <input type="file" class="file control-label" name="queryFile" data-show-preview="false"
+                            data-show-upload="false">
+                            <span class="help-block"><a onclick="showQueryExampleFile()"><em>
+                                Example file</em></a></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="actions col-sm-offset-2 col-sm-2">
+                            <button type="button" class="btn btn-primary" style="width: 90%;" id="search" onclick="mySearch()">
+                                Run</button>
+                        </div>
+
+                        <div class="actions  col-sm-2">
+                            <button type="reset" class="btn btn-primary" style="width: 90%;">
+                                Reset</button>
+                        </div>
+                    </div>
+
+                </form>
+
+                <div id="result" style="display: none">
+                    <hr>
+                    <h4 style="color: black" id="missionResult">Result:</h4>
+                    <h5>Axt result:
+                        &nbsp;<button class="btn btn-primary" onclick="downloadAxt()"><i class="fa fa-download"></i>&nbsp;Download</button>
+                    </h5>
+                    <pre id="axtString" style="background-color: white"></pre>
+
+
+                    <div id="download" style="margin-top: 20px">
+                        <button type="button" class="btn btn-primary" id="deleteButton" onclick="downloadPng1()"
+                        style="margin-bottom: 10px">
+                            <i class="fa fa-download"></i>&nbsp;download Parallel result file
+                        </button>
+                    </div>
+                    <div id="charts">
+                        <div>no picture result！</div>
+                    </div>
+
+                    <div id="download">
+                        <button type="button" class="btn btn-primary" id="deleteButton" onclick="downloadPng2()"
+                        style="margin-bottom: 10px">
+                            <i class="fa fa-download"></i>&nbsp;download Xoy result file
+                        </button>
+                    </div>
+                    <div id="charts1">
+                        <div>no picture result！</div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+}

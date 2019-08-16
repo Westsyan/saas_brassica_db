@@ -1,0 +1,65 @@
+@()(implicit session: Session)
+@english.home.main("Download") {
+
+
+    <div id="content-wrapper" class="large-text">
+        <section class="indent">
+            <div class="container">
+                <hgroup class="page-head">
+                    <h2 style="color: #207499">Download</h2>
+                </hgroup>
+
+                <hr style="border-top: 1px solid #d9d9d9;"/>
+
+
+                <div id="container" class="clearfix">
+                    <div id="content" class="full-width">
+                        <div class="tabs-container" style="padding: 10px">
+                            <table class="display table table-bordered" data-pagination="true"
+                            data-page-list="[10, 25, 50, 100, all]" data-search-align="left" data-multiple-search="true">
+                                <tbody id="table">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <script>
+
+
+        $(function () {
+
+            var download = ["BrapaFPsc_277_v1.3.annotation_info.txt",
+                "BrapaFPsc_277_v1.3.defline.txt",
+                "BrapaFPsc_277_v1.3.cds.fa.gz",
+                "BrapaFPsc_277_v1.3.cds_primaryTranscriptOnly.fa.gz",
+                "BrapaFPsc_277_v1.3.gene.gff3.gz",
+                "BrapaFPsc_277_v1.3.gene_exons.gff3.gz",
+                "BrapaFPsc_277_v1.3.protein.fa.gz",
+                "BrapaFPsc_277_v1.3.protein_primaryTranscriptOnly.fa.gz",
+                "BrapaFPsc_277_v1.3.repeatmasked_assembly_v1.gff3.gz",
+                "BrapaFPsc_277_v1.3.transcript.fa.gz",
+                "BrapaFPsc_277_v1.3.transcript_primaryTranscriptOnly.fa.gz",
+                "BrapaFPsc_277_v1.fa.gz",
+                "BrapaFPsc_277_v1.hardmasked.fa.gz",
+                "BrapaFPsc_277_v1.softmasked.fa.gz"
+            ];
+
+            var html = "";
+            $.each(download,function (i,v) {
+                html += "<tr><td><a href='/SAAS/BGDB/download/download?file=" + v + "' target='_blank'>" + v + "</a></td></tr>"
+            });
+
+            $("#table").html(html);
+
+
+        })
+
+    </script>
+
+}
